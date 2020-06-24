@@ -1,5 +1,9 @@
 /node_modules
 
+/dist/js/*
+/dist/css/*
+/dist/fonts/*
+
 # misc
 .DS_Store
 
