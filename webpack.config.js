@@ -15,9 +15,8 @@ module.exports = {
   },
   entry: './src/js/app.js',
   output: {
-    filename: 'app.js',
-    path: path.resolve(__dirname, 'dist/js'),
-    publicPath: 'dist',
+    filename: 'js/[name].[contenthash:6].js',
+    path: path.resolve(__dirname, 'dist')
   },
   module: {
     rules: [
@@ -50,9 +49,9 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              name: '[name].[ext]',
-              outputPath: '../fonts/',
-              publicPath: '../fonts/',
+              name: '[name].[contenthash:6].[ext]',
+              outputPath: 'fonts/',
+              publicPath: './fonts/',
             },
           },
         ],
@@ -61,12 +60,16 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: '../css/app.css',
+      filename: 'css/app.[contenthash:6].css',
     }),
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
     }),
-    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'My App',
+      template: './src/html/index.html',
+      filename: './index.html'
+    }),
   ],
 };
